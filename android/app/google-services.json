@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "423907359516",
+    "project_id": "quickh-d9a43",
+    "storage_bucket": "quickh-d9a43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:423907359516:android:6ed7f94782203f7ce518d9",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA11Umq8576WheNNHWzixuzajgbJvsUzbw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:423907359516:android:1f3618cf9e1fb1d7e518d9",
+        "android_client_info": {
+          "package_name": "com.kavya.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA11Umq8576WheNNHWzixuzajgbJvsUzbw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
