@@ -1,16 +1,14 @@
 # quick_h
+The app aims to provide a reliable platform for the general public to send emergency SOS signals and for medical staff to respond quickly. Users can send an SOS signal that includes their current location, obtained through the Google Maps API. This SOS notification is sent to nearby users and medical staff, facilitating quick and effective emergency responses. Utilizing Firebase Authentication, the app distinguishes between general public users and medical staff, directing them to their respective interfaces with appropriate functionalities, ensuring a tailored user experience based on their roles.
 
-A new Flutter project.
 
-## Getting Started
+# Some instances of the app
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<img src='welcome.png' alt="image" height=550 width=250 />
+<img src='terms1.png' alt="image" height=550 width=250 />
+<img src='terms2.png' alt="image" height=550 width=250 />
+<img src='notif.png' alt="image" height=550 width=250 />
+<img src='signup.png' alt="image" height=550 width=250 />
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

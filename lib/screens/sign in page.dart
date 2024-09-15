@@ -14,11 +14,11 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.yellow,
       body: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(
-                colors: [Colors.white],
+                colors: [Colors.white, Colors.blue],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter)),
         child: Padding(
@@ -34,17 +34,14 @@ class _RegisterState extends State<Register> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Scoopilicious!',
+                      'Create',
                       style: TextStyle(fontSize: 50.0),
                     ),
                     Text(
-                      'We are pleased to',
+                      'Your account',
                       style: TextStyle(fontSize: 38.0),
                     ),
-                    Text(
-                      'welcome you~ ',
-                      style: TextStyle(fontSize: 29.0),
-                    ),
+
                   ],
                 ),
               ),
@@ -106,14 +103,20 @@ class _RegisterState extends State<Register> {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 16.0),
                 child: Material(
-                  color: Colors.brown,
+                  color: Colors.blue.shade800,
                   borderRadius: BorderRadius.all(Radius.circular(30.0)),
                   elevation: 5.0,
                   child: MaterialButton(
                     onPressed: () async {
                       final newUser =
                       await _auth.createUserWithEmailAndPassword(
-                          email: email, password: password);
+                          email: email, password: password)
+                          .then((signedInUser){
+
+
+                      }).catchError((e){
+                        print(e);
+                      });
                       if (newUser != null) {
                         Get.toNamed("/verify");
                       }

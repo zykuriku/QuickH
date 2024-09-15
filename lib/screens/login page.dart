@@ -2,6 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+List<String> termTitle=['Location Permissions', 'Notification Permissions','User Responsibility', 'Privacy and Data Use','Emergency Contacts','Internet Access','Limitation of Liability','App Updates','Termination of Service','Changes to Terms'];
+
+
 
 
 class LoginScreen extends StatefulWidget {
