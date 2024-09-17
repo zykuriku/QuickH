@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class Register extends StatefulWidget {
   @override
@@ -9,6 +11,8 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final _auth = FirebaseAuth.instance;
+  final _firestore=FirebaseFirestore.instance;
+  String role='general';
   String email = "";
   String password = "";
   @override
@@ -108,17 +112,25 @@ class _RegisterState extends State<Register> {
                   elevation: 5.0,
                   child: MaterialButton(
                     onPressed: () async {
-                      final newUser =
-                      await _auth.createUserWithEmailAndPassword(
-                          email: email, password: password)
-                          .then((signedInUser){
-
-
-                      }).catchError((e){
-                        print(e);
-                      });
+                      final newUser = await _auth.createUserWithEmailAndPassword(
+                          email: email, password: password);
                       if (newUser != null) {
-                        Get.toNamed("/verify");
+                        String uid=newUser.user!.uid;
+
+                        await _firestore.collection('users').doc(uid).set({
+                          'email': email,
+                          'role': role,
+                        });
+                        Get.toNamed("/login");
+                      }
+
+                      else{
+                        Alert(
+                          context: context,
+                          title: "Duplicate data!",
+                          desc: "User already exists.",
+                        ).show();
+
                       }
                     },
                     minWidth: 200.0,

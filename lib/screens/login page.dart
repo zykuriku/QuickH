@@ -22,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(
-                colors: [Colors.white],
+                colors: [Colors.white, Colors.lightBlue],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter)),
         child: Padding(
@@ -42,10 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     'who\'s here',
                     style: TextStyle(fontSize: 34.0),
                   ),
-                  Text(
-                    'once again~',
-                    style: TextStyle(fontSize: 26.0),
-                  ),
+
                 ],
               ),
               const SizedBox(
@@ -106,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 16.0),
                 child: Material(
-                  color: Colors.brown,
+                  color: Colors.blue.shade700,
                   borderRadius: BorderRadius.all(Radius.circular(30.0)),
                   elevation: 5.0,
                   child: MaterialButton(
@@ -114,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       await FirebaseAuth.instance.signInWithEmailAndPassword(
                           email: email, password: pass);
                       if (FirebaseAuth.instance.currentUser != null) {
-                        Get.toNamed("/verify");
+                        Get.toNamed("/emergency");
                       }
                     },
                     minWidth: 200.0,
