@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:quick_h/api/firebase_api.dart';
 
 class Register extends StatefulWidget {
   @override
@@ -12,6 +14,7 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   final _auth = FirebaseAuth.instance;
   final _firestore=FirebaseFirestore.instance;
+  final FirebaseAPI _messaging= FirebaseAPI();
   String role='general';
   String email = "";
   String password = "";
@@ -121,7 +124,12 @@ class _RegisterState extends State<Register> {
                           'email': email,
                           'role': role,
                         });
+                        await _messaging.initNotifications(uid);
+
+
                         Get.toNamed("/login");
+
+
                       }
 
                       else{

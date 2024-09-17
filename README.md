@@ -6,9 +6,8 @@ The app aims to provide a reliable platform for the general public to send emerg
 
 
 
-<img src='welcome.png' alt="image" height=550 width=250 />
-<img src='terms1.png' alt="image" height=550 width=250 />
-<img src='terms2.png' alt="image" height=550 width=250 />
-<img src='notif.png' alt="image" height=550 width=250 />
-<img src='signup.png' alt="image" height=550 width=250 />
+<img src='welcome.png' alt="image" height=550 width=250 />  <img src='terms1.png' alt="image" height=550 width=250 />
+<img src='terms2.png' alt="image" height=550 width=250 />  <img src='notif.png' alt="image" height=550 width=250 />
+<img src='signup.png' alt="image" height=550 width=250 /> <img src='sos.png' alt="image" height=550 width=250 />
+<img src='map.png' alt="image" height=550 width=250 />
 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../api/firebase_api.dart';
 
 
 final List<String> terms = [
@@ -76,9 +75,8 @@ class _TermsState extends State<Terms> {
 
 
 
-                  onPressed: ()async {
+                  onPressed: () {
 
-                    await FirebaseAPI().initNotifications();
                 Get.toNamed('/sign');
               },
 
