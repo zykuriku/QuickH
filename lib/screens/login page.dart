@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,6 +16,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   late String email;
   late String pass;
+
+  final FirebaseFirestore _firestore=FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,9 +111,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   elevation: 5.0,
                   child: MaterialButton(
                     onPressed: () async {
-                      await FirebaseAuth.instance.signInWithEmailAndPassword(
+                      final _auth=await FirebaseAuth.instance.signInWithEmailAndPassword(
                           email: email, password: pass);
+                      String uid=_auth.user!.uid;
+
+                      DocumentSnapshot userDoc = await _firestore.collection('users').doc(uid).get();
+                      String role = userDoc['role'];
+
                       if (FirebaseAuth.instance.currentUser != null) {
+
+                        if (role == 'general') {
+                          Get.toNamed('/emergency');
+                        } else if (role == 'medical') {
+                          Get.toNamed('/doc');
+                        }
                         Get.toNamed("/emergency");
                       }
                     },

@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:quick_h/screens/doc%20screen.dart';
+import 'package:quick_h/screens/doctor%20signup.dart';
 import 'package:quick_h/screens/emergency%20help.dart';
 import 'package:quick_h/screens/loading.dart';
 import 'package:quick_h/screens/login%20page.dart';
@@ -31,6 +33,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/verify', page: () => Verify()),
         GetPage(name: '/emergency', page: () => Emergency()),
         GetPage(name: '/loading', page: () => Loading()),
+        GetPage(name: '/doc', page: () => DocScreen()),
+        GetPage(name: '/doctorSignUp', page: () => DoctorRegister()),
       ],
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

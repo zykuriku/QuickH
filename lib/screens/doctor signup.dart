@@ -1,23 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:quick_h/api/firebase_api.dart';
 
-class Register extends StatefulWidget {
+class DoctorRegister extends StatefulWidget {
   @override
-  _RegisterState createState() => _RegisterState();
+  _DoctorRegisterState createState() => _DoctorRegisterState();
 }
 
-class _RegisterState extends State<Register> {
+class _DoctorRegisterState extends State<DoctorRegister> {
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
   final FirebaseAPI _messaging = FirebaseAPI();
-  String role = 'general';
+  String role = 'medical';
   String email = "";
   String password = "";
+  String workplace = "";
+  String mbbsYear = "";
+  String experience = "";
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +27,10 @@ class _RegisterState extends State<Register> {
       backgroundColor: Colors.yellow,
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Colors.white, Colors.blue],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
+            gradient: LinearGradient(
+                colors: [Colors.white, Colors.blue],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter)),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
@@ -38,17 +38,17 @@ class _RegisterState extends State<Register> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
+                padding:
+                const EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Create',
-                      style: TextStyle(fontSize: 50.0),
-                    ),
-                    Text(
-                      'Your account',
-                      style: TextStyle(fontSize: 38.0),
+
+                    Center(
+                      child: Text(
+                        'Register as a doctor',
+                        style: TextStyle(fontSize: 30.0),
+                      ),
                     ),
                   ],
                 ),
@@ -62,7 +62,8 @@ class _RegisterState extends State<Register> {
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   hintText: 'Enter your email',
-                  contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                  contentPadding:
+                  EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(32.0)),
                   ),
@@ -85,7 +86,79 @@ class _RegisterState extends State<Register> {
                 obscureText: true,
                 decoration: InputDecoration(
                   hintText: 'Enter your password',
-                  contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                  contentPadding:
+                  EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.brown, width: 1.0),
+                    borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.brown, width: 2.0),
+                    borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                  ),
+                ),
+              ),
+              SizedBox(height: 8.0),
+              TextField(
+                onChanged: (value) {
+                  workplace = value;
+                },
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(
+                  hintText: 'Enter your current workplace',
+                  contentPadding:
+                  EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.brown, width: 1.0),
+                    borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.brown, width: 2.0),
+                    borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                  ),
+                ),
+              ),
+              SizedBox(height: 8.0),
+              TextField(
+                onChanged: (value) {
+                  mbbsYear = value;
+                },
+                textAlign: TextAlign.center,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  hintText: 'Enter your MBBS completion year',
+                  contentPadding:
+                  EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.brown, width: 1.0),
+                    borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.brown, width: 2.0),
+                    borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                  ),
+                ),
+              ),
+              SizedBox(height: 8.0),
+              TextField(
+                onChanged: (value) {
+                  experience = value;
+                },
+                textAlign: TextAlign.center,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  hintText: 'Enter your years of experience',
+                  contentPadding:
+                  EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(32.0)),
                   ),
@@ -116,10 +189,14 @@ class _RegisterState extends State<Register> {
                         await _firestore.collection('users').doc(uid).set({
                           'email': email,
                           'role': role,
+                          'workplace': workplace,
+                          'mbbs_year': mbbsYear,
+                          'experience': experience,
                         });
-                        await _messaging.initNotifications(uid);
 
-                        Get.toNamed("/login");
+
+
+                        Get.toNamed('/login');
                       } else {
                         Alert(
                           context: context,
@@ -135,16 +212,6 @@ class _RegisterState extends State<Register> {
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
-                ),
-              ),
-              // Add TextButton for doctor sign-up
-              TextButton(
-                onPressed: () {
-                  Get.toNamed('/doctorSignUp'); // Navigate to the doctor sign-up screen
-                },
-                child: Text(
-                  "Sign up as a medical professional",
-                  style: TextStyle(color: Colors.blue.shade800),
                 ),
               ),
             ],
